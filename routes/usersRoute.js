@@ -19,10 +19,8 @@ router.route('/')
 // Find user by ID
 router.route('/:id')
     .get(function(req,resp){
-        User.findById( req.params.id , function(err,per)
-        {
-            if(err)
-            {
+        User.findById( req.params.id , function(err,per){
+            if(err){
                 return resp.send(err);
             }
             return resp.json(per);
@@ -71,18 +69,16 @@ router.route('/:id')
 
         const response = await axios.get('http://localhost:8000/api/users/'+req.params.id);
         let updatedUser = response.data;
+
         for(let key in req.body){
             updatedUser[key] = req.body[key];
         }
-        User.findByIdAndUpdate(req.params.id,updatedUser,function(err)
-        {
-            if(err)
-            {
+        User.findByIdAndUpdate(req.params.id,updatedUser,function(err){
+            if(err){
                 return resp.send(err);
             }
-            else
-            {
-                return resp.send(`User ${req.body.username} was Updated!`)
+            else{
+                return resp.send(`User ${req.body.username} was updated!`);
             }
         })
     });
