@@ -87,5 +87,18 @@ router.route('/:id')
         })
     });
 
+// Delete user by ID
+router.route('/:id')
+    .delete(function(req,resp){
+
+        User.findByIdAndDelete(req.params.id,function(err){
+            if(err){
+                return resp.send(err);
+            }
+            else{
+                return resp.send(`User ${req.body.username} was deleted!`);
+            }
+        })
+    });
 
 module.exports = router;
