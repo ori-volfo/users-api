@@ -14,5 +14,5 @@ A backend service that uses NodeJS on the server with MongoDB, and basic filesys
 4. Create a DB with the name **UsersDB**
 
 ## Usage
-
-Run the command `npm start` from terminal
+* For initializing DB collections, on first run, use the command `npm run startDB`
+* If collections are already initialized, simply run the command `npm start` from terminal

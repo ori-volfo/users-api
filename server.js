@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
+const args = require('minimist')(process.argv.slice(2));
 const axios = require('axios');
 const usersInitURL = 'https://jsonplaceholder.typicode.com/users';
-
 const bodyParser = require('body-parser');
 
 require('./configs/database');
@@ -14,9 +14,12 @@ app.use('/api/users',require('./routes/usersRoute'));
 
 app.listen(8000);
 
-init();
 
-function init() {
+
+if(args.initDB){
+    initDB();
+}
+function initDB() {
     usersInit(usersInitURL);
 }
 
