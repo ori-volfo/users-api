@@ -74,12 +74,12 @@ router.route('/:id')
         for(let key in req.body){
             updatedUser[key] = req.body[key];
         }
-        User.findByIdAndUpdate(req.params.id,updatedUser,function(err){
+        User.updateOne({id:req.params.id},updatedUser,function(err){
             if(err){
                 return resp.send(err);
             }
             else{
-                return resp.send(`User ${req.body.username} was updated!`);
+                return resp.send(`User ${updatedUser.username} was updated!`);
             }
         })
     });
@@ -88,12 +88,12 @@ router.route('/:id')
 router.route('/:id')
     .delete(function(req,resp){
 
-        User.findByIdAndDelete(req.params.id,function(err){
+        User.findOneAndDelete({id:req.params.id},function(err){
             if(err){
                 return resp.send(err);
             }
             else{
-                return resp.send(`User ${req.body.username} was deleted!`);
+                return resp.send(`User ${req.params.id} was deleted!`);
             }
         })
     });
