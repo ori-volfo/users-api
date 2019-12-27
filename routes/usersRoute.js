@@ -19,7 +19,7 @@ router.route('/')
 // Find user by ID
 router.route('/:id')
     .get(function(req,resp){
-        User.findById( req.params.id , function(err,per){
+        User.find( {id:req.params.id} , function(err,per){
             if(err){
                 return resp.send(err);
             }
@@ -31,6 +31,7 @@ router.route('/:id')
 router.route('/')
     .post(function(req,resp){
         let newUser = new User({
+            id: req.body.id,
             name : req.body.name,
             username : req.body.username,
             email : req.body.email,
