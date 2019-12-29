@@ -10,9 +10,10 @@ db.on('error', () => console.log('Error occured..'));
 
 let DB = {};
 
-DB.init = function(usersInitURL,postsInitURL) {
+DB.init = function(usersInitURL,postsInitURL,todosInitURL) {
     usersInit(usersInitURL);
     postsInit(postsInitURL);
+    todosInit(todosInitURL);
 };
 
 async function usersInit(url){
@@ -29,6 +30,15 @@ async function postsInit(url){
     let posts = await axios.get(url);
     posts.data.forEach(post =>{
             axios.post('http://localhost:8000/api/posts/',post);
+        }
+    )
+}
+
+async function todosInit(url){
+
+    let todos = await axios.get(url);
+    todos.data.forEach(todo =>{
+            axios.post('http://localhost:8000/api/todos/',todo);
         }
     )
 }
