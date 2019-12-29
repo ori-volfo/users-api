@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const args = require('minimist')(process.argv.slice(2));
 const bodyParser = require('body-parser');
 
 const usersInitURL = 'https://jsonplaceholder.typicode.com/users';
