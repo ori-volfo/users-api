@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const axios = require('axios');
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost:27017/UsersDB');
 
 const db = mongoose.connection;
