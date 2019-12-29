@@ -8,13 +8,6 @@ const db = mongoose.connection;
 db.once('open', () => console.log('Database opened...'));
 db.on('error', () => console.log('Error occured..'));
 
-let DB = {};
-
-DB.init = function(usersInitURL,postsInitURL,todosInitURL) {
-    usersInit(usersInitURL);
-    postsInit(postsInitURL);
-    todosInit(todosInitURL);
-};
 
 async function usersInit(url){
 
@@ -43,4 +36,4 @@ async function todosInit(url){
     )
 }
 
-module.exports = DB;
+module.exports = {usersInit,postsInit,todosInit};
