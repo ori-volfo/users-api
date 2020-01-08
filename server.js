@@ -7,6 +7,8 @@ const postsInitURL = 'https://jsonplaceholder.typicode.com/posts';
 const todosInitURL = 'https://jsonplaceholder.typicode.com/todos';
 const {usersInit,postsInit,todosInit} = require('./configs/database');
 
+const Files = require('./models/filesModel');
+
 
 
 app.use(bodyParser.urlencoded({extended : true}))
@@ -18,6 +20,7 @@ app.use('/api/todos',require('./routes/todosRoute'));
 
 app.listen(8000);
 
+Files.makeDir('files');
 
 usersInit(usersInitURL);
 postsInit(postsInitURL);

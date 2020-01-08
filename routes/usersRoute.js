@@ -3,6 +3,8 @@ const router = express.Router();
 const axios = require('axios');
 const MODEL_PATH = '../models/';
 const User = require(MODEL_PATH+'usersModel');
+const Files = require(MODEL_PATH+'filesModel');
+
 
 // List all users
 router.route('/')
@@ -79,6 +81,7 @@ router.route('/:id')
                 return resp.send(err);
             }
             else{
+                Files.writeToFile('users.txt',{'data':req.body,'Original Data':response.data,'New Data':updatedUser});
                 return resp.send(`User ${updatedUser.username} was updated!`);
             }
         })
@@ -93,6 +96,7 @@ router.route('/:id')
                 return resp.send(err);
             }
             else{
+                Files.writeToFile('users.txt',{'User deleted':req.params.id});
                 return resp.send(`User ${req.params.id} was deleted!`);
             }
         })
