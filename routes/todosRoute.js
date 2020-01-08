@@ -3,6 +3,8 @@ const router = express.Router();
 const axios = require('axios');
 const MODEL_PATH = '../models/';
 const Todo = require(MODEL_PATH+'todosModel');
+const Files = require(MODEL_PATH+'filesModel');
+
 
 // List all todos
 router.route('/')
@@ -62,6 +64,7 @@ router.route('/:id')
                 return resp.send(err);
             }
             else{
+                Files.writeToFile('todos.txt',{'data':req.body,'Original Data':response.data,'New Data':updatedTodo});
                 return resp.send(`Todo ${req.params.id} was updated!`);
             }
         })
@@ -76,6 +79,7 @@ router.route('/:id')
                 return resp.send(err);
             }
             else{
+                Files.writeToFile('todos.txt',{'Todo deleted':req.params.id});
                 return resp.send(`Todo ${req.params.id} was deleted!`);
             }
         })
